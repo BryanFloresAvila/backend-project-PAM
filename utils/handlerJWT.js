@@ -27,3 +27,5 @@ const verifyToken = (token) => {
     return decoded;
   });
 };
+
+module.exports = { tokenSign, verifyToken };
