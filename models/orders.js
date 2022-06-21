@@ -38,7 +38,7 @@ const orderSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'users',
   },
   dateOrdered: {
     type: Date,
@@ -46,5 +46,5 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-const Orders = mongoose.model('Orders', orderSchema);
+const Orders = mongoose.model('orders', orderSchema);
 module.exports = Orders;
