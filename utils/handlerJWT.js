@@ -22,7 +22,7 @@ const tokenSign = (user) => {
  * TODO: verify token, return false if token is invalid and return user if token is valid
  */
 const verifyToken = (token) => {
-  jsonwebtoken.verify(token, JWT_SECRET, (err, decoded) => {
+  return jsonwebtoken.verify(token, JWT_SECRET, (err, decoded) => {
     if (err) return false;
     return decoded;
   });
