@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 5000;
 
 //Allow any origin to access the API
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+console.log(__dirname);
 app.use(bodyParser.json());
 connectDB();
 app.use('/api/v1', require('./routes'));

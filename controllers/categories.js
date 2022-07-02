@@ -46,15 +46,12 @@ const deleteCategory = async (req, res) => {
     });
   }
 };
+// missing validation
 const updateCategory = async (req, res) => {
   try {
     const { categoryId } = req.params;
     const { name, description } = req.body;
-    const response = await categories.findByIdAndUpdate(
-      categoryId,
-      { name, description },
-      { new: true }
-    );
+    const response = await categories.findByIdAndUpdate(categoryId, { name }, { new: true });
     if (!response) {
       return res.status(400).json({
         message: 'Error updating category',
@@ -70,4 +67,50 @@ const updateCategory = async (req, res) => {
     });
   }
 };
-module.exports = { createCategory, deleteCategory, updateCategory };
+
+const getCategories = async (req, res) => {
+  try {
+    const response = await categories.find().select('name');
+    if (!response) {
+      return res.status(400).json({
+        message: 'Error getting categories',
+      });
+    }
+    res.json({
+      message: 'Categories retrieved',
+      data: response,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'Error getting categories',
+    });
+  }
+};
+
+const getCategory = async (req, res) => {
+  try {
+    const { categoryId } = req.params;
+    const response = await categories.findById(categoryId).select('name');
+    if (!response) {
+      return res.status(400).json({
+        message: 'Error getting category',
+      });
+    }
+    res.json({
+      message: 'Category retrieved',
+      data: response,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'Error getting category',
+    });
+  }
+};
+
+module.exports = {
+  createCategory,
+  deleteCategory,
+  updateCategory,
+  getCategories,
+  getCategory,
+};

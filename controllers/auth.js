@@ -1,7 +1,6 @@
 const users = require('../models/users');
 const { tokenSign, verifyToken } = require('../utils/handlerJWT');
 const { encrypt, compare } = require('../utils/handlerPassword');
-const { validatorLogin } = require('../utils/handlerValidators/auth');
 const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
