@@ -9,9 +9,9 @@ const {
   getProducts,
 } = require('../controllers/products');
 const uploadImageMiddleware = require('../middlewares/products');
-router.post('/create', uploadImageMiddleware, validatorProducts, createProduct);
-router.delete('/:productId', deleteProduct);
-router.put('/:productId', uploadImageMiddleware, updateProduct);
+router.post('/create',authMiddleware, uploadImageMiddleware, validatorProducts, createProduct);
+router.delete('/:productId',authMiddleware, deleteProduct);
+router.put('/:productId',authMiddleware, uploadImageMiddleware, updateProduct);
 router.get('/:productId', getProduct);
 router.get('/', getProducts);
 module.exports = router;
