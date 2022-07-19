@@ -3,12 +3,13 @@ const { tokenSign, verifyToken } = require('../utils/handlerJWT');
 const { encrypt, compare } = require('../utils/handlerPassword');
 const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, rol } = req.body;
     const passwordEncrypt = await encrypt(password);
     const user = {
       name,
       email,
       password: passwordEncrypt,
+      rol: rol ? rol : 'user',
     };
     const data = await users.create(user);
     data.set('password', undefined, { strict: false });
