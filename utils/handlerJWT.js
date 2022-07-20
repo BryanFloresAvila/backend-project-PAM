@@ -6,7 +6,6 @@ const JWT_SECRET = process.env.JWT_SECRET;
  * TODO: generate token
  */
 const tokenSign = (user) => {
-  console.log(user)
   const token = jsonwebtoken.sign(
     {
       _id: user._id,
