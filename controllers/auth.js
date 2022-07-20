@@ -56,12 +56,13 @@ const verifyTokenAdmin = (req, res) => {
     }
     const token = req.headers.authorization.split(' ')[1];
     const decoded = verifyToken(token);
+    //console.log(decoded);
     if (!decoded) {
       return res.status(401).json({
         message: 'Invalid token',
       });
     }
-    if(decoded.role !== 'admin') {
+    if(decoded.rol !== 'admin') {
       return res.status(401).json({
         message: 'You are not admin',
       });

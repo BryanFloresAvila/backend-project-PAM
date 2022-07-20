@@ -1,6 +1,7 @@
 const { verifyToken } = require('../utils/handlerJWT');
 const users = require('../models/users');
 const authMiddleware = async (req, res, next) => {
+
   if(!req.headers.authorization) {
     return res.status(401).json({
       message: 'No token provided'
@@ -8,12 +9,15 @@ const authMiddleware = async (req, res, next) => {
   }
   const token = req.get('Authorization').split(' ')[1];
   const decoded = verifyToken(token);
+
+  console.log(decoded);
+  
   if (!decoded) {
     return res.status(401).json({
       message: 'Invalid token',
     });
   }
-  if(decoded.role !== 'admin') {
+  if(decoded.rol !== 'admin') {
     return res.status(401).json({
       message: 'You are not admin',
     });
