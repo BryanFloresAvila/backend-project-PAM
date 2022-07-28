@@ -112,7 +112,7 @@ const getProduct = async (req, res) => {
 };
 const getProducts = async (req, res) => {
   try {
-    const response = await products.find();
+    const response = await products.find().populate('category','name');
     if (!response) {
       return res.status(400).json({
         message: 'Error getting products',
